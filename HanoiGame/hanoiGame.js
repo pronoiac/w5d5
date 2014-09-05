@@ -34,6 +34,18 @@ HanoiGame.prototype.isValidMove = function (startTowerIdx, endTowerIdx) {
   return false;
 };
 
+HanoiGame.prototype.move = function (startTowerIdx, endTowerIdx) {
+  if (!this.isValidMove(startTowerIdx, endTowerIdx)){
+    return false;
+  }
+  var srcStack = this.stacks[startTowerIdx];
+  var dstStack = this.stacks[endTowerIdx];
+  
+  dstStack.push(srcStack.pop());
+  
+  return true;
+};
+
 var run = function () {
   var game = new HanoiGame();  
 };
