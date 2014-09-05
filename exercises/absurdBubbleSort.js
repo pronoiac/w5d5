@@ -30,7 +30,7 @@ function innerBubbleSortLoop (arr, i, madeAnySwaps, outerBubbleSortLoop) {
       innerBubbleSortLoop (arr, i + 1, madeAnySwaps, outerBubbleSortLoop);
     });
   }
-  if (i === (arr.length - 1)){
+  if (i === (arr.length - 1)) {
     outerBubbleSortLoop(madeAnySwaps);
   }
   

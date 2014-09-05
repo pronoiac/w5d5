@@ -15,13 +15,14 @@ Clock.prototype.printTime = function () {
 
 Clock.prototype.run = function () {
   // 1. Set the currentTime.
-  this.currentTime = new Date(Date.now());
+  this.currentTime = new Date();
   
   // 2. Call printTime.
   console.log ("First time!");
   this.printTime();
   
   // 3. Schedule the tick interval.
+  // maybe try this in the other ways: i.e. call/apply or method style
   setInterval(this._tick.bind(this), Clock.TICK);
 };
 

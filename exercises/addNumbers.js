@@ -9,7 +9,7 @@ var addNumbers = function (sum, numsLeft, completionCallback) {
   // If numsLeft > 0, then:
   if(numsLeft > 0) {
     // Prompt the user for a number (use reader).
-    reader.question("Next number: ", function (answer){
+    reader.question("Next number: ", function (answer) {
       // Pass a callback that:
       // Uses parseInt to parse the input.
       var input = parseInt(answer);
@@ -22,11 +22,11 @@ var addNumbers = function (sum, numsLeft, completionCallback) {
       //   the increased sum,
       //   the decreased numsLeft,
       //   and the same completionCallback.
-      addNumbers(sum, numsLeft-1,completionCallback);
+      addNumbers(sum, numsLeft - 1, completionCallback);
     });
   }
   // If numsLeft == 0, call completionCallback(sum) so that the total sum can be used.
-  if(numsLeft === 0){
+  if (numsLeft === 0) {
     completionCallback(sum);
     reader.close();
   }
