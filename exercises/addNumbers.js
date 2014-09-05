@@ -1,3 +1,4 @@
+"use strict";
 var readline = require('readline');
 var reader = readline.createInterface({
   input: process.stdin,
@@ -21,15 +22,17 @@ var addNumbers = function (sum, numsLeft, completionCallback) {
       //   the increased sum,
       //   the decreased numsLeft,
       //   and the same completionCallback.
-      
+      addNumbers(sum, numsLeft-1,completionCallback);
     });
-  };
+  }
   // If numsLeft == 0, call completionCallback(sum) so that the total sum can be used.
+  if(numsLeft === 0){
+    completionCallback(sum);
+    reader.close();
+  }
 };
 
+console.log("Enter 3 numbers to sum.");
 addNumbers(0, 3, function (sum) {
   console.log("Total Sum: " + sum);
 });
-reader.setPrompt("Type something:", 16);
-//console.log(
-  reader.prompt(true);
