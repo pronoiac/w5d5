@@ -3,6 +3,12 @@ var HanoiGame = function () {
   this.stacks = [[3, 2, 1], [], []];
 };
 
+var readline = require('readline');
+var reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
 HanoiGame.prototype.isWon = function () {
   // some methods: 
   // * a (non-index 0) stack has length of max_depth
@@ -47,15 +53,52 @@ HanoiGame.prototype.move = function (startTowerIdx, endTowerIdx) {
 };
 
 HanoiGame.prototype.print = function () {
-  console.log("Stacks:");  
+  console.log("Stacks:");
   // [0, 1, 2].for (function (el) {
   for (var i = 0; i < this.stacks.length; i++) {
     console.log("  " + i + ": " + this.stacks[i]);
   }
 };
 
-var run = function () {
-  var game = new HanoiGame();  
+HanoiGame.prototype.promptMove = function (callback) {
+
+  
+  this.print();
+  
+  reader.question("Move (from, to) e.g. '1, 2': ", function (answer) {
+    var list = answer.split(",");
+    var src = parseInt(list[0], 10);
+    var dst = parseInt(list[1], 10);
+    
+    callback(src, dst);
+  });
 };
+
+HanoiGame.prototype.run = function(completionCallback){
+  var game = this;
+  this.promptMove(function (startTowerIdx, endTowerIdx){
+    if(!game.move(startTowerIdx,endTowerIdx)){
+      console.log("Bad move");
+    }
+    
+    if (game.isWon()){
+      game.print();
+      console.log("You win");
+      completionCallback();
+    } else {
+      game.run(completionCallback);
+    }
+  });
+};
+
+var run = function () {
+  game.run(function(){
+    reader.close();
+  });
+};
+
+
+var game = new HanoiGame();
+run();
 
 module.exports = HanoiGame;
