@@ -46,8 +46,16 @@ HanoiGame.prototype.move = function (startTowerIdx, endTowerIdx) {
   return true;
 };
 
+HanoiGame.prototype.print = function () {
+  console.log("Stacks:");  
+  // [0, 1, 2].for (function (el) {
+  for (var i = 0; i < this.stacks.length; i++) {
+    console.log("  " + i + ": " + this.stacks[i]);
+  }
+};
+
 var run = function () {
   var game = new HanoiGame();  
 };
 
-module.exports = HanoiGame
+module.exports = HanoiGame;
